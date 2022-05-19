@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# repack
+#
+# Repack a 64 MB BIOS image with a 48 MB ME partition from a specific one
+# and a 16 MB BIOS ROM partition from another.
+#
+# version: 0.0.1
+# author: johnny-appleseed
+# email: liuzhaohui@inspur.com
+# date: 2022-05-19
+
+set -o nounset
+
+main () {
+    local size me rom
+    ParseArgs "$@"
+    exit
+    printf -v size "%d" "0x3000000"
+    truncate --size=$size
+}
+
+ParseArgs () {
+    local mode sw val
+    while test $# -ge 1
+    do
+        case $1 in
+        --no-*)
+            mode=no
+            sw=${1#--no-}
+            ;;
+        --*)
+            mode=2
+            sw=${1#--}
+            ;;
+        -*)
+            mode=1
+            sw=${1#-}
+            ;;
+        *)
+            mode=0
+            sw=$1
+            ;;
+        esac
+        shift
+    done
+}
+
+main "$@"
