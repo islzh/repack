@@ -43,6 +43,18 @@ ParseArgs () {
             ;;
         esac
         shift
+        case $mode in
+        no)
+            ;;
+        2)
+            ;;
+        1)
+            ;;
+        0)
+            ;;
+        *)
+            ;;
+        esac
     done
 }
 
