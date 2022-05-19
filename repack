@@ -46,4 +46,10 @@ ParseArgs () {
     done
 }
 
+die () {
+    test $# -gt 0 || exit
+    >&2 printf "%s\n" "$@"
+    exit 1
+}
+
 main "$@"
